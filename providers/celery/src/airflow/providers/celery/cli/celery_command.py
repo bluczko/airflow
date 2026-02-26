@@ -122,7 +122,12 @@ def _serve_logs(skip_serve_logs: bool = False):
             sub_proc.terminate()
 
 
-def _bundle_cleanup_main(check_interval):
+def _bundle_cleanup_main(check_interval: int) -> None:
+    """
+    Main function for stale bundle cleanup process.
+    Must be picklable for process start method.
+    """
+
     from airflow.dag_processing.bundles.base import BundleUsageTrackingManager
 
     mgr = BundleUsageTrackingManager()
